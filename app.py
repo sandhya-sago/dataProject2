@@ -25,19 +25,23 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
-@app.route("/metadata/")
-def names():
+@app.route("/allTimePlaymetadata/")
+def allTime():
     """Return a list of top performing genres."""
 
     # Use Pandas to perform the sql query
     stmt = "select * from allTimePlayCount"
-    # stmt2 = db.session.query(weeklyPlayCount).statement
-    df = pd.read_sql_query(stmt, session.bind)
-    data = {"Genre": df["Genre"].tolist(),"allTimePlays": df["allTimePlays"].tolist()}
-    # Return a list of the column names (sample names)
-    return jsonify(data)
+    df = pd.read_sql_query(stmt, session.bind) 
+    Trace1 = {"Genre": df["Genre"].tolist(), "allTimePlays": df["allTimePlays"].tolist()}
+    return jsonify(Trace1)
+
+@app.route("/weeklyPlaymetadata/")
+def weeklyPlay():
+    stmt2 = "select * from weeklyPlayCount"
+    df2 = pd.read_sql_query(stmt2, session.bind)
+    Trace2 = {"Genre": df2["Genre"].tolist(),"weeklyPlays": df2["weeklyPlays"].tolist()}
+    return jsonify(Trace2)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-

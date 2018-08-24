@@ -6,11 +6,14 @@
 		<link rel="stylesheet" type="text/css" href="static/style.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 		<!--script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
 		<script src="https://d3js.org/d3-selection.v1.min.js"></script>
 		<script src="https://d3js.org/d3-drag.v1.min.js"></script-->
 	</head>
 	<body>
+
+		<div id="chart">		</div>
 		<div id="slider">		</div>
 		<p class="center"><div id="option">
 			<input name="updateButton" 
@@ -18,7 +21,7 @@
 				   value="Auto Play" 
 				   onclick="auto_play()" />
 		</div></p>
-		<div id="chart">		</div>
+		<div id="line">		</div>
 
 		<script type="text/javascript" src="static/billboard.js"></script>
   </body>

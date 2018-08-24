@@ -1,3 +1,7 @@
+//var fs = require('fs');
+//var path = require('path');
+
+
 var svgWidth = 960;
 var svgHeight = 660;
 
@@ -101,6 +105,43 @@ class  MusicData {
   }
 } // end Class MusicData
 
+function generes_line (all_data, generes) {
+  var  traces = [];
+  var this_trace = {
+    x : all_data.all_years,
+    y : all_data.num_songs,
+    mode:'lines+markers',
+    name : "Total number of songs"
+  };
+  traces.push(this_trace);
+
+  generes.forEach(function (g,i) {
+    // yarray holds number of songs in each genere for a particular
+    // year
+    var yarray = [];
+    var show = false;
+    all_data.all_counts.forEach(function (count, j) {
+      yarray.push(all_data.all_counts[j][i]);
+    });
+    var this_trace = {
+      x: all_data.all_years,
+      y: yarray,
+      mode:'lines+markers',
+      name:g,
+    };
+    //console.log(g, yarray, d3.max(yarray));
+    if (d3.max(yarray)<10) {
+      // by default show only the categories which have atleast
+      // 10 hits atleast once
+      this_trace["visible"] = "legendonly";
+    }
+    traces.push(this_trace);
+  }); // for all generes
+  //console.log(traces)
+
+  var layout = {title:'Genere trends over years'};
+  Plotly.newPlot('line', traces, layout);
+} // end generes_line
 
 function successfunction (billboard){
   //console.log("Billboard data: ", billboard);
@@ -108,12 +149,13 @@ function successfunction (billboard){
   d3.json("../aggregate_genres.json").then ((genere_data) => {
     generes = ["Unknown"];
     genere_data.forEach((d)=>{
-      generes.push(Object.keys(d));
+      generes.push(Object.keys(d)[0]);
     });
     all_data = new MusicData(billboard, generes);
     axes = new DrawAxes(generes);
     console.log("Summary of billboard data:", all_data);
     auto_play();
+    generes_line(all_data, generes);
   });
 }
 
@@ -193,6 +235,61 @@ function draw_slider () {
     console.log("User selected : ", year);
   }
 }
+
+class  YearlyMusicData {
+  constructor() {
+    this.all_counts = [];
+    this.all_years = [];
+    this.num_songs = [];
+  }
+  update(year_data, year, genere_map, generes) {
+    var counts = {};
+    var num_songs = 0;
+    generes.forEach((tag)=>{counts[tag]=0});
+    year_data.forEach((song) => {
+        num_songs++;
+        song["tags"].forEach((subtag)=>{
+          if (genere_map[subtag]) {
+            counts[genere_map[subtag]] ++;
+          } else {
+            //console.log("No genere mapping found for: ", subtag);
+          }
+        }); // for each subtag
+        if (d3.sum(Object.values(counts)) == 0 ){
+          // Could not identify even one tag
+          counts["Unknown"] ++;
+        }
+      }); //for each song
+      var counts_array = generes.map(tag=>counts[tag])
+      this.all_counts.push(counts_array);
+      this.all_years.push(year);
+      this.num_songs.push(num_songs);
+  } // end update
+} // end Class MusicData
+
 d3.json("../data.json").then(successfunction, errorfunction);
+/*d3.json("../aggregate_genres.json").then ((genere_data) => {
+  generes = ["Unknown"];
+  genere_map = {};
+  genere_data.forEach((d)=>{
+    tag = Object.keys(d)[0];
+    generes.push(tag);
+    Object.values(d).forEach((sublist)=> {
+      sublist.forEach((s)=>{genere_map[s] = tag});
+    }); 
+  });
+  //console.log("Reverse genere map: ", genere_map);
+  all_data = new YearlyMusicData();
+  for (y=1950;y<2016;y++) {
+    file = "data/years/"+ y +'.json';
+    d3.json(file).then((year_data)=>{
+      all_data.update(year_data, y, genere_map, generes);
+    }, errorfunction);
+  } // for each file
+  axes = new DrawAxes(generes);
+  auto_play();
+  generes_line(all_data, generes);
+  console.log("All billboard data:", all_data);
+});*/
 draw_slider();
 

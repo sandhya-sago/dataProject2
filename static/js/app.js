@@ -6,13 +6,13 @@ function buildBarPlot() {
   var data = [
     {
       x: response.Genre,
-      y: response.allTimePlayCount,
-      hovertext: response.allTimePlayCount,
+      y: response.allTimePlays,
+      hovertext: response.allTimePlays,
       type: 'bar'
     }
   ]; 
   Plotly.newPlot('myDiv', data);
  })
  }
-
+ 
 buildBarPlot();

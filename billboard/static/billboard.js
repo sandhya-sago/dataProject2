@@ -3,11 +3,11 @@
 
 
 var svgWidth = 960;
-var svgHeight = 660;
+var svgHeight = 560;
 
 // Define the chart's margins as an object
 var chartMargin = {
-  top: 30,
+  top: 0,
   right: 30,
   bottom: 30,
   left: 100
@@ -21,12 +21,12 @@ var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 class DrawAxes {
   constructor (generes) {
     // Select body, append SVG area to it, and set the dimensions
-    var svg = d3.select("body")
+    var chartsvg = d3.select("#chart")
       .append("svg")
       .attr("height", svgHeight)
       .attr("width", svgWidth);
     // Append a group to the SVG area and shift ('translate') it to the right and to the bottom
-    this.chartGroup = svg.append("g")
+    this.chartGroup = chartsvg.append("g")
       .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);  
     var barSpacing = 10; // desired space between each bar
     var scaleY = 40; // 10x scale on rect height

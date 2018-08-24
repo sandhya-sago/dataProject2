@@ -7,7 +7,7 @@ var svgHeight = 560;
 
 // Define the chart's margins as an object
 var chartMargin = {
-  top: 0,
+  top: 30,
   right: 30,
   bottom: 30,
   left: 100
@@ -46,10 +46,10 @@ class DrawAxes {
     var leftAxis = d3.axisLeft(this.yBandScale);
     var bottomAxis = d3.axisBottom(this.xLinearScale).ticks(10);
 
-    this.chartGroup.append("g")
+    this.chartGroup.append("g").attr("class", "axisgold")
       .call(leftAxis);
 
-    this.chartGroup.append("g")
+    this.chartGroup.append("g").attr("class", "axisgold")
       .attr("transform", `translate(0, ${chartHeight})`)
       .call(bottomAxis);
 
@@ -60,8 +60,8 @@ class DrawAxes {
     .attr("x",0)
     .attr("height",this.yBandScale.bandwidth())
     .attr("y",  (g, j) => this.yBandScale(g))
-    this.label1 = this.chartGroup.append("g").append("text").attr("x", 400).attr("y",300);
-    this.label2 = this.chartGroup.append("g").append("text").attr("x", 350).attr("y",320);
+    this.label1 = this.chartGroup.append("g").append("text").attr("x", 400).attr("y",300).attr("fill", "gold");
+    this.label2 = this.chartGroup.append("g").append("text").attr("x", 350).attr("y",320).attr("fill", "gold");
 
     //return [chartGroup, xLinearScale, yBandScale];
   }// end constructor
@@ -139,14 +139,23 @@ function generes_line (all_data, generes) {
   }); // for all generes
   //console.log(traces)
 
-  var layout = {title:'Genere trends over years'};
+  var layout = {paper_bgcolor: "rgba(0,0,0,0)",
+  bgcolor: "rgba(0,0,0,0)",
+  title:'Genere trends over years',
+  titlefont:{"color":"gold"},
+  plot_bgcolor : "rgba(0,0,0,0)",
+  xaxis :{title:"Year", titlefont:{color:"gold"}},
+  yaxis :{title:"Number of hits", titlefont:{color:"gold"}},
+  tickfont:{color:"gold"},
+  legend:{font:{color:"gold"}}
+  };
   Plotly.newPlot('line', traces, layout);
 } // end generes_line
 
 function successfunction (billboard){
   //console.log("Billboard data: ", billboard);
   //billboard.forEach(process_year);
-  d3.json("../aggregate_genres.json").then ((genere_data) => {
+  d3.json("/billboard/aggregate_genres.json").then ((genere_data) => {
     generes = ["Unknown"];
     genere_data.forEach((d)=>{
       generes.push(Object.keys(d)[0]);
@@ -190,7 +199,7 @@ function draw_slider () {
       .clamp(true);
 
   var slider = svg.append("g")
-      .attr("class", "slider")
+      .attr("class", "slider") //.attr("class", "axisgold")
       .attr("transform", "translate(" + margin.left + "," + height / 2 + ")");
 
   slider.append("line")
@@ -210,7 +219,7 @@ function draw_slider () {
       .attr("transform", "translate(0," + 18 + ")")
     .selectAll("text")
     .data(x.ticks(10))
-    .enter().append("text")
+    .enter().append("text").attr("fill", "gold")
       .attr("x", x)
       .attr("text-anchor", "middle")
       .text((d)=>d);
@@ -267,7 +276,7 @@ class  YearlyMusicData {
   } // end update
 } // end Class MusicData
 
-d3.json("../data.json").then(successfunction, errorfunction);
+d3.json("/billboard/data.json").then(successfunction, errorfunction);
 /*d3.json("../aggregate_genres.json").then ((genere_data) => {
   generes = ["Unknown"];
   genere_map = {};

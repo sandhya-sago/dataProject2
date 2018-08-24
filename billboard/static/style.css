@@ -2,6 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
+  background:purple;
+  font : gold;
 }
 
 .bar {
@@ -41,4 +43,16 @@ body {
   stroke: #000;
   stroke-opacity: 0.5;
   stroke-width: 1.25px;
+}
+
+.axisgold line{
+  stroke:gold;
+}
+
+.axisgold path{
+  stroke: gold;
+}
+
+.axisgold text{
+  fill: gold;
 }

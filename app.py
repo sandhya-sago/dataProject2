@@ -34,6 +34,10 @@ def soundcloud():
 def billboard():
     return render_template("billboard.html")
 
+@app.route("/tours")
+def tours():
+    return render_template("concert_tours.html")
+
 @app.route("/allTimePlaymetadata/")
 def allTime():
     """Return a list of top performing genres."""

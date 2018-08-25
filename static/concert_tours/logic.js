@@ -17,8 +17,9 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 var markers = L.markerClusterGroup();
 
+myMap.invalidateSize();
 
-d3.csv("location1.csv", function(data) {
+d3.csv("/static/concert_tours/location1.csv", function(data) {
   console.log(data);
 
     if (data.Latitude){
@@ -32,7 +33,6 @@ d3.csv("location1.csv", function(data) {
 
 // Add our marker cluster layer to the map
 myMap.addLayer(markers);
-
 
 // var date = "$where=created_date between'2016-01-10T12:00:00' and '2017-01-01T14:00:00'";
 // var complaint = "&complaint_type=Rodent";

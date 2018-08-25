@@ -17,18 +17,26 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-engine=create_engine("sqlite:///soundcloud.sqlite")
+engine=create_engine("sqlite:///static/soundcloud/soundcloud.sqlite")
 session=Session(engine)
 
 @app.route("/")
 def index():
     """Return the homepage."""
-    return render_template("index.html")
+    return render_template("index.1.html")
+
+@app.route("/soundcloud")
+def soundcloud():
+    """Return the homepage."""
+    return render_template("soundcloud.html")
+
+@app.route("/billboard")
+def billboard():
+    return render_template("billboard.html")
 
 @app.route("/allTimePlaymetadata/")
 def allTime():
     """Return a list of top performing genres."""
-
     # Use Pandas to perform the sql query
     stmt = "select * from allTimePlayCount"
     df = pd.read_sql_query(stmt, session.bind) 

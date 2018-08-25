@@ -11,20 +11,20 @@
     <title>Music is life</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href= "/{{ url_for('static', filename='music/vendor/bootstrap/cssbootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/{{url_for('static',filename='music/vendor/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="/{{url_for('static',filename='music/vendor/simple-line-icons/css/simple-line-icons.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
     <!-- Plugin CSS -->
-    <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
+    <link rel="stylesheet" href="/{{url_for('static',filename='music/device-mockups/device-mockups.min.css')}}">
 
     <!-- Custom styles for this template -->
-    <link href="css/new-age.min.css" rel="stylesheet">
+    <link href="/{{url_for('static',filename='music/css/new-age.min.css')}}"" rel="stylesheet">
 
   </head>
   <body>
@@ -40,20 +40,20 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Alisha</a>
+              <a class="nav-link js-scroll-trigger" href="#download">Concert Tours</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#features">Anish</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/soundcloud">Sound Cloud</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#cta">Evert</a>
+              <a class="nav-link js-scroll-trigger" href="/billboard">Bill Board</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Sandhya</a>
-            </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#features">Music Search/Add</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="/loginsignup">Login/Signup</a>
             </li>
@@ -63,26 +63,27 @@
       </div>
     </nav>
 
-    <header class="masthead">
-      <div class="container h-100">
+    <!-- <header class="masthead">
+       <div class="container h-100">
         <div class="row h-100">
           <div class="col-lg-7 my-auto">
             <div class="header-content mx-auto">
-              <h1 class="mb-5">Welcome to our humble website, where we have sliced and diced the data of music over the years.</h1>
+              <h1 class="mb-5">-->
+              <!--</h1>
               <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">CLick here to begin</a>
             </div>
           </div>
           <div class="col-lg-5 my-auto">
-            <div class="device-container">
+             <div class="device-container">
               <div class="device-mockup iphone6_plus portrait white">
                 <div class="device">
                   <div class="screen">
-                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                    <! Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else!
                     <img src="img/dark_note.jpg" class="img-fluid" alt="">
                     <img src="img/dark_note.jpg" class="img-fluid" alt="">
                   </div>
                   <div class="button">
-                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                     You can hook the "home button" to some JavaScript events or just remove it
                   </div>
                 </div>
               </div>
@@ -90,14 +91,24 @@
           </div>
         </div>
       </div>
-    </header>
-    <div class="parallax"></div>
+    </header> -->
+    <!-- <div class="parallax"></div> -->
     <section class="download bg-primary text-center" id="download">
       <div class="container">
         <div class="row">
           <div class="col-md-8 mx-auto">
-            <h2 class="section-heading">First API graphs and data</h2>
-            <p>Graphs and data go here. The length of this div can always be adjusted. </p>
+            <h2 class="section-heading">Data of Music</h2>
+            <p>Welcome to our project on music data, where we have sliced and diced the data of music over the years.</p>
+            <p>Billboard data for historical trends<p>
+            <p>Soundcloud data for current trends</p>
+            <p>Interactive Map of concert tours</p>
+
+
+
+
+
+
+
             <div class="badges">
               <!-- <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
               <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a> -->
@@ -106,26 +117,26 @@
         </div>
       </div>
     </section>
-<div class="parallax"></div>
-    <section class="features" id="features">
+<!-- <div class="parallax"></div>
+    <section class="features" id="features"> -->
 
-      <div class="container">
-        <div class="section-heading text-center">
+      <!-- <div class="container"> -->
+        <!-- <div class="section-heading text-center">
           <h2>TITLE</h2>
           <p class="text-muted">description</p>
           <hr>
         </div>
         <div class="row">
           <div class="col-lg-4 my-auto">
-            <div class="device-container">
+             <div class="device-container">
               <div class="device-mockup iphone6_plus portrait white">
-                <div class="device">
+                <!<div class="device">
                   <div class="screen">
-                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="img/blueguitar.jpg" class="img-fluid" alt="">
+                    <! Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                    <!-- <img src="img/blueguitar.jpg" class="img-fluid" alt="">
                   </div>
-                  <div class="button">
-                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                  <div class="button"> -->
+                    <!-- You can hook the "home button" to some JavaScript events or just remove it
                   </div>
                 </div>
               </div>
@@ -169,18 +180,18 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 <div class="parallax"></div>
-    <section class="cta" id ="cta">
+    <!-- <section class="cta" id ="cta">
       <div class="cta-content">
         <div class="container">
           <h2>More good stuff</h2>
-          <!-- <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a> -->
+           <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
         </div>
       </div>
       <div class="overlay"></div>
-    </section>
-    <div class="parallax"></div>
+    </section> -->
+    <!-- <div class="parallax"></div> -->
     <section class="contact bg-primary" id="contact">
       <div class="container">
         <h2>We
@@ -224,14 +235,14 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="/{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/new-age.min.js"></script>
+    <script src="/{{ url_for('static', filename='js/new-age.min.js') }}"></script>
 
   </body>
 

@@ -36,7 +36,11 @@ def billboard():
 
 @app.route("/tours")
 def tours():
-    return render_template("concert_tours.html")
+    return render_template("Marker_Clusters.html")
+
+@app.route("/tours1")
+def tours1():
+    return render_template("concertours.html")
 
 @app.route("/allTimePlaymetadata/")
 def allTime():
